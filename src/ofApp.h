@@ -35,6 +35,7 @@ public:
 	int yHolder = 0;
 	int widthHolder = 0;
 	int heightHolder = 0;
+	int sizeInc = 0;
 	bool brushType = true;
 	bool brushShape = true;
 

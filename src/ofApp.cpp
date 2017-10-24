@@ -10,7 +10,7 @@ ofRectangle eraserButton(10 + brushChanger.x + brushChanger.width, 10, 60, 40);
 void ofApp::setup() {
 	ofSetFrameRate(60);
 	ofSetBackgroundAuto(false);
-	ofSetBackgroundColor(199);
+	ofBackground(199);
 }
 
 //--------------------------------------------------------------
@@ -48,7 +48,7 @@ void ofApp::draw() {
 void ofApp::eraser(){
 	if (buttonNo==3 && state==2) {
 		ofSetColor(199);
-		ofDrawEllipse(mouseX, mouseY, 10, 10);
+		ofDrawEllipse(mouseX, mouseY, 10+sizeInc, 10+sizeInc);
 	}
 }
 
@@ -58,18 +58,18 @@ void ofApp::drawPaint() {
 	if (buttonNo == 2 && state == 2) {
 		if (brushType==true) {
 			if (brushShape == true) {
-				ofDrawEllipse(mouseX, mouseY, 8, 8);
+				ofDrawEllipse(mouseX, mouseY, 8+sizeInc, 8 + sizeInc);
 			}
 			else if (brushShape == false) {
-				ofDrawRectangle(mouseX, mouseY, 8, 8);
+				ofDrawRectangle(mouseX, mouseY, 8 + sizeInc, 8 + sizeInc);
 			}
 		}
 		else if (brushType==false) {
 			if (brushShape == true) {
-				ofDrawEllipse(mouseX + ofRandom(-10, 10), mouseY + ofRandom(-10, 10), 3, 3);
+				ofDrawEllipse(mouseX + ofRandom(-10, 10), mouseY + ofRandom(-10, 10), 3 + sizeInc, 3 + sizeInc);
 			}
 			else if (brushShape == false) {
-				ofDrawRectangle(mouseX + ofRandom(-10, 10), mouseY + ofRandom(-10, 10), 3, 3);
+				ofDrawRectangle(mouseX + ofRandom(-10, 10), mouseY + ofRandom(-10, 10), 3 + sizeInc, 3 + sizeInc);
 			}
 		}
 	}
@@ -127,7 +127,7 @@ void ofApp::mousePressed(int x, int y, int button) {
 		state = 2;
 	}
 
-	state2 = 0; //Used t stop the paint function from continuing to draw even when the stop if is called
+	state2 = 0; //Used to stop the paint function from continuing to draw even when the stop if is called
 
 	//Checks the button has been pressed
 	if (x >= paintDrawer.x &&
@@ -216,18 +216,27 @@ void ofApp::keyPressed(int key) {
 		brushShape = !brushShape;
 	}
 
+	if (key == 358) {
+		sizeInc++;
+		cout << sizeInc;
+	}
+
+	if (key == 356 && sizeInc>0) {
+		sizeInc--;
+		cout << sizeInc;
+	}
+
 	//For saving your work
 	if (key == 's') {
 		file.grabScreen(0, 0, 1024, 600);
-		file.save("myFile.jpg");
+		file.save("myFile.png");
 	}
 
-	//bool reseter = true;
-	//if (key == 'r' && reseter==true) {
-	//	cout << "R LOGGED";
-	//	ofSetBackgroundAuto(true);
-	//	reseter = false;
-	//}
+	if (key == 'l') {
+		file.load("myFile.png");
+		cout << "LOADED";
+		file.draw(0, 0);
+	}
 }
 
 //--------------------------------------------------------------
