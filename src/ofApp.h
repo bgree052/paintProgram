@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
-
+#include <iostream>
 
 
 class ofApp : public ofBaseApp {
@@ -26,12 +26,17 @@ public:
 	void drawPaint();
 	void eraser();
 
-	int buttonNo;
-	int state;
-	int xHolder;
-	int yHolder;
-	int widthHolder;
-	int heightHolder;
-	bool brushType;
-	bool brushShape;
+	int colourHolder[3] = { 0, 0, 0 };
+
+	int buttonNo = 0;
+	int state = 0;
+	int state2 = 0;
+	int xHolder = 0;
+	int yHolder = 0;
+	int widthHolder = 0;
+	int heightHolder = 0;
+	bool brushType = true;
+	bool brushShape = true;
+
+	ofImage file;
 };
