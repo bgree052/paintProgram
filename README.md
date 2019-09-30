@@ -1,2 +1,2 @@
-A simple Paint program
-Needs openFrameworks to run
+A simple Paint program.
+Needs openFrameworks to run.
